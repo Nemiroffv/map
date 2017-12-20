@@ -4,49 +4,10 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>Using MySQL and PHP with Google Maps</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-       .results{
-     text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+   
+    <link href="style.css" rel="stylesheet">
 
-
-
-
-       }
-      #map {
-        height: 70%;
-        width:70%;
-        padding: 10px; /* Поля вокруг текста */
-        border-radius: 20px;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 15px;
-        
-
-      }
-       #menu {
-         width:30%; 
-         float:left;
-
-       }  
-       H1 {
-  text-shadow: 1px 1px white,
-               2px 2px #777;
-  color: #333;
-  transition: all 1s;
-  text-align: center;
-  }
-  H1:hover {
-    text-shadow: 1px 1px white,
-                 2px 2px tomato;
-    color: crimson;
-    }
-
-
-    </style>
+  
   </head>
 
   <body>
@@ -55,17 +16,21 @@
       <script type="text/javascript">
 
        $.ajax({
-  url: 'menu.php',
-  success: function(data) {
-    $('.results').html(data);
-  }
-});
+        url: 'menu.php',
+        success: function(data) {
+       $('.results').html(data);
+          }
+        });
 
-       </script>
+  </script>
 
     </div> 
     <div id="map" style="float:right;"></div>
-    <div><H1>Пользователи</H1></div>
+
+    <div>
+    <H1>Пользователи</H1>
+    </div>
+
      <div class="results"></div>
 
     <script>
