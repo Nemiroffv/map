@@ -24,6 +24,8 @@
 
 
   H1 {
+    font-family: verdana;
+    font-size: 200%;
   text-shadow: 1px 1px white,
                2px 2px #777;
   color: #333;

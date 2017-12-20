@@ -1,5 +1,17 @@
 <?php
-require("phpsqlajax_dbinfo.php");
+//Подключение к базе и выбор данных для показа на карте
+header("Content-type: text/xml");
+define('DB_SERVER', 'localhost');       
+define('DB_USERNAME', 'root');         
+define('DB_PASSWORD', 'a123'); 
+define('DB_DATABASE', 'map'); 
+
+
+require_once 'database.class.php';
+DataBase::Connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+
+
+
 
 function parseToXML($htmlStr)
 {
@@ -11,43 +23,29 @@ $xmlStr=str_replace("&",'&amp;',$xmlStr);
 return $xmlStr;
 }
 
-// Opens a connection to a MySQL server
-$connection=mysql_connect ('localhost', $username, $password);
-if (!$connection) {
-  die('Not connected : ' . mysql_error());
-}
-
-// Set the active MySQL database
-$db_selected = mysql_select_db($database, $connection);
-if (!$db_selected) {
-  die ('Can\'t use db : ' . mysql_error());
-}
-
-// Select all the rows in the markers table
 $query = "SELECT * FROM markers WHERE 1";
 $result = mysql_query($query);
 if (!$result) {
   die('Invalid query: ' . mysql_error());
 }
 
-header("Content-type: text/xml");
 
-// Start XML file, echo parent node
 echo '<markers>';
 
-// Iterate through the rows, printing XML nodes for each
+
 while ($row = @mysql_fetch_assoc($result)){
   // Add to XML document node
   echo '<marker ';
-  echo 'name="' . parseToXML($row['name']) . '" ';
-  echo 'address="' . parseToXML($row['address']) . '" ';
-  echo 'lat="' . $row['lat'] . '" ';
-  echo 'lng="' . $row['lng'] . '" ';
-  echo 'type="' . $row['type'] . '" ';
+
+   $view = 'name="' . parseToXML($row['name']) . '" '.
+  'address="' . parseToXML($row['address']) . '" '.
+  'lat="' . $row['lat'] . '" '.
+  'lng="' . $row['lng'] . '" '.
+  'type="' . $row['type'] . '" ';
+  echo $view;
   echo '/>';
 }
 
-// End XML file
 echo '</markers>';
-
+DataBase::Close();
 ?>

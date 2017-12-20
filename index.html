@@ -2,41 +2,35 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Using MySQL and PHP with Google Maps</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
    
+    
+    <link rel="stylesheet" href="reset.css">
     <link href="style.css" rel="stylesheet">
+</head>
 
-  
-  </head>
 
   <body>
     <div id="menu">
-      
-      <script type="text/javascript">
+        </div>
 
-       $.ajax({
-        url: 'menu.php',
-        success: function(data) {
-       $('.results').html(data);
-          }
-        });
-
-  </script>
-
-    </div> 
-    <div id="map" style="float:right;"></div>
+   <div id="map" style="float:right;">
+        </div>
 
     <div>
     <H1>Пользователи</H1>
     </div>
 
-     <div class="results"></div>
+     <div class="results">
+          </div>
+
+
+ <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBU3W7LdjzSNGHwKw9mfqo2Rz1ONcwrKx4&callback=initMap">
+    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <script>
-
-
-      var customLabel = {
+       var customLabel = {
         restaurant: {
           label: 'R'
         },
@@ -44,10 +38,11 @@
           label: 'B'
         }
       };
-       
+
+
         function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(49.9935, 36.230383000000074),
+       var map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(50.015713,36.272076),
           zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
@@ -106,9 +101,19 @@
       }
 
       function doNothing() {}
+
+
+
+      //Данные для меню
+       $( document ).ready(function(){$.ajax({
+        url: 'menu.php',
+        success: function(data) {
+       $('.results').html(data);
+          }
+        });});
+
+ 
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBU3W7LdjzSNGHwKw9mfqo2Rz1ONcwrKx4&callback=initMap">
-    </script>
+   
   </body>
 </html>
